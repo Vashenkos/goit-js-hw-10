@@ -25,5 +25,5 @@
 }
 
 .timer {
-  display: block;
+  display: flex;
 }
