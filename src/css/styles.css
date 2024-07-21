@@ -8,10 +8,6 @@
 @import url('./vite-promo.css');
 @import url('./header.css');
 
-a {
-  margin-bottom: 28px;
-}
-
 .timer {
   /* display: flex; */
   width: 346px;

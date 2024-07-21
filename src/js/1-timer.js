@@ -1,17 +1,18 @@
 import flatpickr from 'flatpickr';
-const flatpickr = require('flatpickr');
 import 'flatpickr/dist/flatpickr.min.css';
+import iziToast from 'izitoast';
+import 'izitoast/dist/css/iziToast.min.css';
 
-const startBtn = document.querySelector('button[data-start]');
-// const stopBtn = document.querySelector('button[data-action-stop]');
-// const clockface = document.querySelector('.js-clockface');
+const dateTimePicker = document.querySelector('#datetime-picker');
+const startButton = document.querySelector('button[data-start]');
+const daysValue = document.querySelector('[data-days]');
+const hoursValue = document.querySelector('[data-hours]');
+const minutesValue = document.querySelector('[data-minutes]');
+const secondsValue = document.querySelector('[data-seconds]');
 
-flatpickr('#datetime-picker', {
-  enableTime: true,
-  dateFormat: 'Y-m-d H:i',
-  minDate: 'today', // Запобігає вибору минулих дат
-  defaultDate: new Date(), // Встановлює дату за замовчуванням на сьогодні
-});
+let userSelectedDate;
+let timerInterval;
+
 const options = {
   enableTime: true,
   time_24hr: true,
@@ -21,3 +22,70 @@ const options = {
     console.log(selectedDates[0]);
   },
 };
+
+// const options = {
+//   enableTime: true,
+//   time_24hr: true,
+//   defaultDate: new Date(),
+//   minuteIncrement: 1,
+//   onClose(selectedDates) {
+//     userSelectedDate = selectedDates[0];
+//     if (userSelectedDate <= new Date()) {
+//       iziToast.error({
+//         title: 'Error',
+//         message: 'Please choose a date in the future',
+//         position: 'topRight',
+//       });
+//       startButton.disabled = true;
+//     } else {
+//       startButton.disabled = false;
+//     }
+//   },
+// };
+
+// flatpickr(dateTimePicker, options);
+
+// startButton.addEventListener('click', () => {
+//   startButton.disabled = true;
+//   dateTimePicker.disabled = true;
+//   timerInterval = setInterval(updateTimer, 1000);
+// });
+
+// function updateTimer() {
+//   const now = new Date();
+//   const timeRemaining = userSelectedDate - now;
+
+//   if (timeRemaining <= 0) {
+//     clearInterval(timerInterval);
+//     dateTimePicker.disabled = false;
+//     return;
+//   }
+
+//   const timeComponents = convertMs(timeRemaining);
+//   updateInterface(timeComponents);
+// }
+
+// function updateInterface({ days, hours, minutes, seconds }) {
+//   daysValue.textContent = addLeadingZero(days);
+//   hoursValue.textContent = addLeadingZero(hours);
+//   minutesValue.textContent = addLeadingZero(minutes);
+//   secondsValue.textContent = addLeadingZero(seconds);
+// }
+
+// function addLeadingZero(value) {
+//   return String(value).padStart(2, '0');
+// }
+
+// function convertMs(ms) {
+//   const second = 1000;
+//   const minute = second * 60;
+//   const hour = minute * 60;
+//   const day = hour * 24;
+
+//   const days = Math.floor(ms / day);
+//   const hours = Math.floor((ms % day) / hour);
+//   const minutes = Math.floor(((ms % day) % hour) / minute);
+//   const seconds = Math.floor((((ms % day) % hour) % minute) / second);
+
+//   return { days, hours, minutes, seconds };
+// }
